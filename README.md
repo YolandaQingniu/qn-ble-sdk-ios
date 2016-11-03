@@ -3,15 +3,15 @@
 
 集成该 SDK,可以使用 伊欧乐公司旗下几乎所有的智能人体秤
 
-如需使用 android 版,请点击 [这里](../qn-ble-sdk-adnroid)
+如需使用 android 版,请点击 [这里](../../../qn-ble-sdk-adnroid)
 
 Android Studio 工程，如需要使用Eclipse 请自行新建工程，并拷贝相关源文件到工程
 
-## 最新版本 `2.2` [下载地址](../../releasees/download/2.2/QingNiuSDK.zip)
+## 最新版本 `2.2` [下载地址](../../releases/download/2.2/qn-ble-sdk-ios-2.2.zipp)
 * 提高 AppId 校验的成功率
 * 提高轻牛设备型号的识别率
 
-[所有版本](../../releasees)
+[所有版本](../../releases)
 
 
 ### 文件说明
