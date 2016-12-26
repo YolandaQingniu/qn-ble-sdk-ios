@@ -6,7 +6,7 @@
 如需使用 android 版,请点击 [这里](../../../qn-ble-sdk-android)
 
 
-## 最新版本 `2.3.1` [下载地址](../../releases/download/2.3.1/qn-ble-sdk-ios-2.3.1.zip)
+## 最新版本 `2.4` [下载地址](../../releases/download/2.4/qn-ble-sdk-ios-2.4.zip)
 * 增加了几款新型号
 
 [所有版本](../../releases)
