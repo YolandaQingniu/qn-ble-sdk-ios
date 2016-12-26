@@ -36,7 +36,7 @@
 
 2. startBleScan,每次称重之前第一个调用的方法，用于扫描周围的设备，成功会依次返回扫描到的设备
 ```objective-c
-//qingNiuDevice 第一次调用的时候可以传nil，将会扫描附近的所有设备。扫描到目标设备之后，可以将macAddress或者name属性保存下来，以后可以指定连接该设备(注意：QingNiuPeripheral属性不支持归档，所以不能将扫描到的qingNiuDevice直接归档，如果想下次指定设备扫描，可将对应的macAddress、name属性保存，以便下次使用)
+//qingNiuDevice 第一次调用的时候可以传nil，将会扫描附近的所有设备。扫描到目标设备之后，可以将macAddress或者name属性保存下来，以后可以指定连接该设备(注意：QingNiuPeripheral属性不支持归档，所以不能将扫描到的qingNiuDevice直接归档，如果想下次指定设备扫描，可将对应的macAddress、name属性保存，以便下次使用，deviceState属性用来判断扫描到的设备是否开机)
 //scanSuccessBlock：扫描成功之后的回调，扫描到设备之后通过这个block回调qingNiuDevice。
 //scanFailBlock：扫描失败的回调，会将扫描失败的原因通过该方式返回。
 [QingNiuSDK startBleScan:nil scanSuccessBlock:^(QingNiuDevice *qingNiuDevice) {
