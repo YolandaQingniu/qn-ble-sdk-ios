@@ -116,6 +116,16 @@
         button.tag = 2;
         [QingNiuSDK startBleScan:nil scanSuccessBlock:^(QingNiuDevice *qingNiuDevice) {
             NSLog(@"%@",qingNiuDevice);
+            if (qingNiuDevice.deviceState == QingNiuDeviceStatePoweredOff) {
+                NSLog(@"关机");
+            }else {
+                NSLog(@"开机");
+            }
+            if (qingNiuDevice.deviceState == QingNiuDeviceStatePoweredOff) {
+                NSLog(@"关机");
+            }else {
+                NSLog(@"开机");
+            }
             if (_allScanDevice.count == 0) {
                 [_allScanDevice insertObject:qingNiuDevice atIndex:0];
             }else {
@@ -186,6 +196,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (_scanFlag) {
         QingNiuDevice *qingNiuDevice = _allScanDevice[indexPath.row];
+        if (qingNiuDevice.deviceState == QingNiuDeviceStatePoweredOff) {
+            NSLog(@"秤处于关机状态");
+        }
         QingNiuUser *user = [[QingNiuUser alloc] init];
         user.userId = _idTextField.text;
         user.height = [_heightTextField.text intValue];

@@ -13,7 +13,6 @@
 		7F647B3F1C464A580001198F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F647B3D1C464A580001198F /* Main.storyboard */; };
 		7F647B411C464A580001198F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F647B401C464A580001198F /* Assets.xcassets */; };
 		7F647B441C464A580001198F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F647B421C464A580001198F /* LaunchScreen.storyboard */; };
-		7F647B7D1C464AF10001198F /* libQingNiuSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F647B6B1C464AF10001198F /* libQingNiuSDK.a */; };
 		7F647B7F1C464D380001198F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F647B7E1C464D380001198F /* CoreBluetooth.framework */; };
 		7F647B811C464D450001198F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F647B801C464D450001198F /* SystemConfiguration.framework */; };
 		7F647B831C4651040001198F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F647B821C4651040001198F /* CoreGraphics.framework */; };
@@ -32,10 +31,6 @@
 		7F647B401C464A580001198F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F647B431C464A580001198F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F647B451C464A580001198F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7F647B6B1C464AF10001198F /* libQingNiuSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libQingNiuSDK.a; sourceTree = "<group>"; };
-		7F647B6C1C464AF10001198F /* QingNiuDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingNiuDevice.h; sourceTree = "<group>"; };
-		7F647B6D1C464AF10001198F /* QingNiuSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingNiuSDK.h; sourceTree = "<group>"; };
-		7F647B6E1C464AF10001198F /* QingNiuUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingNiuUser.h; sourceTree = "<group>"; };
 		7F647B7E1C464D380001198F /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		7F647B801C464D450001198F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7F647B821C4651040001198F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,7 +48,6 @@
 				7F647B831C4651040001198F /* CoreGraphics.framework in Frameworks */,
 				7F647B811C464D450001198F /* SystemConfiguration.framework in Frameworks */,
 				7F647B7F1C464D380001198F /* CoreBluetooth.framework in Frameworks */,
-				7F647B7D1C464AF10001198F /* libQingNiuSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +78,6 @@
 		7F647B331C464A580001198F /* sdkDemo */ = {
 			isa = PBXGroup;
 			children = (
-				7F647B6A1C464AF10001198F /* QingNiuSDK */,
 				7F647B371C464A580001198F /* AppDelegate.h */,
 				7F647B381C464A580001198F /* AppDelegate.m */,
 				7F647B3A1C464A580001198F /* ViewController.h */,
@@ -104,17 +97,6 @@
 				7F647B351C464A580001198F /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		7F647B6A1C464AF10001198F /* QingNiuSDK */ = {
-			isa = PBXGroup;
-			children = (
-				7F647B6B1C464AF10001198F /* libQingNiuSDK.a */,
-				7F647B6C1C464AF10001198F /* QingNiuDevice.h */,
-				7F647B6D1C464AF10001198F /* QingNiuSDK.h */,
-				7F647B6E1C464AF10001198F /* QingNiuUser.h */,
-			);
-			path = QingNiuSDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
