@@ -8,7 +8,7 @@
 
 ## 最新版本 `2.5` [下载地址](../../releases/download/2.5/qn-ios-ble-sdk-2.5.zip)
 * 增加了几款新型号
-* 增加判断当前扫描的秤是否开机的变量
+* 增加高级指标分数
 
 [所有版本](../../releases)
 
@@ -25,7 +25,7 @@
 
 ### 使用方法
 1.setLogFlag,设置是否打开打印开关。[QingNiuSDK setLogFlag:YES];设置为YES可查看调试信息。
-2.registerApp,在使用其它的方法之前，请先调用此方法，并请确保第一次调用时网络畅通(可在登录的时候调用)。每次验证都会有一个过期时间，过期时间到了之后会无法扫描，请重新调用该方法。所以建议每次在didFinishLaunchingWithOptions 方法都调用该方法
+* registerApp,在使用其它的方法之前，请先调用此方法，并请确保第一次调用时网络畅通(可在登录的时候调用)。每次验证都会有一个过期时间，过期时间到了之后会无法扫描，请重新调用该方法。所以建议每次在didFinishLaunchingWithOptions 方法都调用该方法
  ```objective-c
  //注册轻牛APP
  //appid：申请使用SDK之前由轻牛分配的。
