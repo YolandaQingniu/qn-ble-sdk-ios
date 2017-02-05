@@ -6,7 +6,7 @@
 如需使用 android 版,请点击 [这里](../../../qn-ble-sdk-android)
 
 
-## 最新版本 `2.4` [下载地址](../../releases/download/2.4/qn-ios-ble-sdk-2.4.zip)
+## 最新版本 `2.5` [下载地址](../../releases/download/2.5/qn-ios-ble-sdk-2.5.zip)
 * 增加了几款新型号
 * 增加判断当前扫描的秤是否开机的变量
 
@@ -104,7 +104,7 @@ typedef void(^DisconnectFailBlock)(QingNiuDeviceDisconnectState qingNiuDeviceDis
 typedef void(^DisconnectSuccessBlock)(QingNiuDeviceDisconnectState qingNiuDeviceDisconnectState);
 ```
 
-* 返回的数据deviceData字典里面各个字段的含义(注意：最后四个指标是拓展指标，只有达成进一步合作协议的SDK接入商才有可能获取其中的某几个指标)
+* 返回的数据deviceData字典里面各个字段的含义
 
 |字段|说明|
 |:----|:-------|
@@ -121,7 +121,7 @@ typedef void(^DisconnectSuccessBlock)(QingNiuDeviceDisconnectState qingNiuDevice
 |bone|骨量
 |protein|蛋白质
 
-注意：以下四个指标是拓展指标，只有达成合作协议的SDK接入商才有可能获取其中的某几个指标
+注意：以下指标是拓展指标，只有达成合作协议的SDK接入商才有可能获取其中的某几个指标
 
 |字段|说明|
 |:----|:-------|
@@ -129,6 +129,7 @@ typedef void(^DisconnectSuccessBlock)(QingNiuDeviceDisconnectState qingNiuDevice
 |sinew|肌肉量
 |fat_free_weight|去脂体重
 |body_shape|体型
+|score|分数
 
 
 #### 枚举说明
