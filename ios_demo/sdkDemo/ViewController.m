@@ -22,7 +22,7 @@
     UIButton *_femaleButton;
     NSString *_gender;
     UITextField *_birthdayTextField;
-//    UITextField *_idTextField;
+    //    UITextField *_idTextField;
     
     UIButton *_scanButton;
     
@@ -116,11 +116,6 @@
         button.tag = 2;
         [QingNiuSDK startBleScan:nil scanSuccessBlock:^(QingNiuDevice *qingNiuDevice) {
             NSLog(@"%@",qingNiuDevice);
-            if (qingNiuDevice.deviceState == QingNiuDeviceStatePoweredOff) {
-                NSLog(@"关机");
-            }else {
-                NSLog(@"开机");
-            }
             if (qingNiuDevice.deviceState == QingNiuDeviceStatePoweredOff) {
                 NSLog(@"关机");
             }else {
@@ -283,6 +278,9 @@
     if (deviceData[@"body_shape"] != nil) {
         [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"体型",@"name",[self getBodyShapeDescriptionWithBodyShape:deviceData[@"body_shape"]],@"value",@"",@"unit", nil]];
     }
+    if (deviceData[@"score"] != nil) {
+        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"分数",@"name",deviceData[@"score"],@"value",@"",@"unit", nil]];
+    }
     return _deviceData;
 }
 
@@ -371,11 +369,11 @@
 - (void)disconnect
 {
     //_qingNiuDevice：连接的设备
-//    [QingNiuSDK cancelConnect:_qingNiuDevice disconnectFailBlock:^(QingNiuDeviceDisconnectState qingNiuDeviceDisconnectState) {
-//        NSLog(@"%ld",(long)qingNiuDeviceDisconnectState);
-//    } disconnectSuccessBlock:^(QingNiuDeviceDisconnectState qingNiuDeviceDisconnectState) {
-//        NSLog(@"%ld",(long)qingNiuDeviceDisconnectState);
-//    }];
+    //    [QingNiuSDK cancelConnect:_qingNiuDevice disconnectFailBlock:^(QingNiuDeviceDisconnectState qingNiuDeviceDisconnectState) {
+    //        NSLog(@"%ld",(long)qingNiuDeviceDisconnectState);
+    //    } disconnectSuccessBlock:^(QingNiuDeviceDisconnectState qingNiuDeviceDisconnectState) {
+    //        NSLog(@"%ld",(long)qingNiuDeviceDisconnectState);
+    //    }];
 }
 
 @end

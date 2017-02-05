@@ -25,6 +25,9 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSLog(@"%@",documentsDirectory);
     
+    //打印开关
+    [QingNiuSDK setLogFlag:YES];
+    
     //注册轻牛APP
     [QingNiuSDK registerApp:@"123456789" andReleaseModeFlag:NO registerAppBlock:^(QingNiuRegisterAppState qingNiuRegisterAppState) {
         NSLog(@"%ld",(long)qingNiuRegisterAppState);
