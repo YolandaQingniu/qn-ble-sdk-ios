@@ -24,7 +24,8 @@
 如果工程已经如此配置则不需重复，若没有，请务必按照步骤配置，否则会影响SDK使用。
 
 ### 使用方法
-1.registerApp,在使用其它的方法之前，请先调用此方法，并请确保第一次调用时网络畅通(可在登录的时候调用)。每次验证都会有一个过期时间，过期时间到了之后会无法扫描，请重新调用该方法。所以建议每次在didFinishLaunchingWithOptions 方法都调用该方法
+1.setLogFlag,设置是否打开打印开关。[QingNiuSDK setLogFlag:YES];设置为YES可查看调试信息。
+2.registerApp,在使用其它的方法之前，请先调用此方法，并请确保第一次调用时网络畅通(可在登录的时候调用)。每次验证都会有一个过期时间，过期时间到了之后会无法扫描，请重新调用该方法。所以建议每次在didFinishLaunchingWithOptions 方法都调用该方法
  ```objective-c
  //注册轻牛APP
  //appid：申请使用SDK之前由轻牛分配的。
@@ -35,7 +36,7 @@
  }];
  ```
 
-2. startBleScan,每次称重之前第一个调用的方法，用于扫描周围的设备，成功会依次返回扫描到的设备
+3. startBleScan,每次称重之前第一个调用的方法，用于扫描周围的设备，成功会依次返回扫描到的设备
 ```objective-c
 //qingNiuDevice 第一次调用的时候可以传nil，将会扫描附近的所有设备。扫描到目标设备之后，可以将macAddress或者name属性保存下来，以后可以指定连接该设备(注意：QingNiuPeripheral属性不支持归档，所以不能将扫描到的qingNiuDevice直接归档，如果想下次指定设备扫描，可将对应的macAddress、name属性保存，以便下次使用，deviceState属性用来判断扫描到的设备是否开机)
 //scanSuccessBlock：扫描成功之后的回调，扫描到设备之后通过这个block回调qingNiuDevice。
@@ -47,7 +48,7 @@
 }];
 ```
 
-2. connectDevice：调用startBleScan方法成功之后，调用此方法连接设备并且获取设备的测量数据
+4. connectDevice：调用startBleScan方法成功之后，调用此方法连接设备并且获取设备的测量数据
 ```objective-c
 // qingNiuDevice：将调用startBleScan获取到的qingNiuDevice作为参数传入，请确保该对象的每一个属性都有值。
 // qingNiuUser：当前测量用户的信息。该对象的所有参数都是测量必不可少的。userId的值请确保不同的用户有不同的值，height为身高(单位cm)，gender是性别(0:女 1:男)，birthday是出生日期，(格式：yyyy-MM-dd 如：1990-06-23)。对象可调用QingNiuUser类中的初始化方法获得。
@@ -60,12 +61,12 @@
         }];
 ```
 
-3. 可选 connectWithAdvertisementData：如果您想自己实现扫描设备的步骤，那么您可以在扫描到设备后将advertisementData和peripheral对象作为参数
+5. 可选 connectWithAdvertisementData：如果您想自己实现扫描设备的步骤，那么您可以在扫描到设备后将advertisementData和peripheral对象作为参数
  使用方法同上
 
-4. cancelConnect：如果想断开与当前设备的连接，可以调用此方法。请确保想断开连接的设备qingNiuDevice正是当前连接上的设备，否则会失败。
+6. cancelConnect：如果想断开与当前设备的连接，可以调用此方法。请确保想断开连接的设备qingNiuDevice正是当前连接上的设备，否则会失败。
 
-5. clearCache：清除缓存。app切换用户登录时可以调用此方法此方法。在需要获取存储数据的时候必须调用，确保接收设备存储数据时不会出现数据混乱。
+7. clearCache：清除缓存。app切换用户登录时可以调用此方法此方法。在需要获取存储数据的时候必须调用，确保接收设备存储数据时不会出现数据混乱。
 
 ### Block说明
 
