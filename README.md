@@ -6,9 +6,8 @@
 如需使用 android 版,请点击 [这里](../../../qn-ble-sdk-android)
 
 
-## 最新版本 `2.5` [下载地址](../../releases/download/2.5/qn-ios-ble-sdk-2.5.zip)
-* 增加了几款新型号
-* 增加高级指标分数
+## 最新版本 `2.6` [下载地址](../../releases/download/2.6/qn-ios-ble-sdk-2.6.zip)
+* 优化SDK性能
 
 [所有版本](../../releases)
 

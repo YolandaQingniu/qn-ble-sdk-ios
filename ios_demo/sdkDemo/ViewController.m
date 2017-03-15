@@ -281,6 +281,9 @@
     if (deviceData[@"score"] != nil) {
         [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"分数",@"name",deviceData[@"score"],@"value",@"",@"unit", nil]];
     }
+    if (deviceData[@"resistance"] != nil) {
+        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"电阻",@"name",deviceData[@"resistance"],@"value",@"",@"unit", nil]];
+    }
     return _deviceData;
 }
 
