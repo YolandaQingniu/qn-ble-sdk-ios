@@ -60,7 +60,7 @@
         }];
 ```
 
-5. 可选 connectWithAdvertisementData：如果您想自己实现扫描设备的步骤，那么您可以在扫描到设备后将advertisementData和peripheral对象作为参数
+5. 可选 connectWithAdvertisementData：如果您想自己实现扫描设备的步骤，那么您可以在扫描到设备后将 advertisementData  和peripheral对象作为参数
  使用方法同上
 
 6. cancelConnect：如果想断开与当前设备的连接，可以调用此方法。请确保想断开连接的设备qingNiuDevice正是当前连接上的设备，否则会失败。
