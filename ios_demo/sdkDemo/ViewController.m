@@ -28,8 +28,10 @@
     
     NSMutableArray *_allScanDevice;
     NSMutableArray *_deviceData;
+    NSDictionary *_deviceDataDic;
     UITableView *_tableView;
     BOOL _scanFlag;
+    QingNiuWeightUnit _qingNiuWeightUnit;
 }
 @end
 
@@ -53,6 +55,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     //一般来说如果该ViewController是测量界面，那么在该方法里面就调用扫描方法
     [self scanBle:_scanButton];
 }
@@ -60,7 +63,7 @@
 #pragma mark 添加头部views
 - (void)addHeadViews
 {
-    _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenBounds.size.width, 70)];
+    _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenBounds.size.width, 110)];
     [self.view addSubview:_headView];
     
     CGFloat subViewsHeight = 30;
@@ -80,11 +83,43 @@
     [self chooseGender:_maleButton];
     
     UILabel *birthdayLabel = [self createLabelWithFrame:CGRectMake(0, CGRectGetMaxY(idLabel.frame) + 10, 40, subViewsHeight) andTitle:@"生日:" onView:_headView];
-    _birthdayTextField = [self createTextFieldWithFrame:CGRectMake(CGRectGetMaxX(birthdayLabel.frame), CGRectGetMinY(birthdayLabel.frame), 120, subViewsHeight) andText:@"1992-01-10" onSuperView:_headView];
+    _birthdayTextField = [self createTextFieldWithFrame:CGRectMake(CGRectGetMaxX(birthdayLabel.frame), CGRectGetMinY(birthdayLabel.frame), 110, subViewsHeight) andText:@"1992-01-10" onSuperView:_headView];
     
     CGFloat scanButtonWidth = 80;
     _scanButton = [self createButtonWithFrame:CGRectMake(CGRectGetMaxX(_femaleButton.frame) - scanButtonWidth, CGRectGetMinY(_birthdayTextField.frame), scanButtonWidth, subViewsHeight) andTitle:@"开始扫描" andSelector:@selector(scanBle:) onSuperView:_headView];
-    _scanButton.tag = 1;
+    _scanButton.tag = 2;
+    
+    UILabel *unitChoiceLabel = [self createLabelWithFrame:CGRectMake(0, CGRectGetMaxY(birthdayLabel.frame) + 10, 100, subViewsHeight) andTitle:@"显示的单位:" onView:_headView];
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"kg",@"lb",@"斤"]];
+    
+    [QingNiuSDK getCurrentWeightUnit:^(QingNiuWeightUnit qingNiuWeightUnit) {
+        _qingNiuWeightUnit = qingNiuWeightUnit;
+        segmentedControl.selectedSegmentIndex = _qingNiuWeightUnit;
+    }];
+    
+    segmentedControl.frame = CGRectMake(CGRectGetMaxX(unitChoiceLabel.frame), CGRectGetMinY(unitChoiceLabel.frame), 200, 20);
+    [segmentedControl addTarget:self action:@selector(segmentedControlClick:) forControlEvents:UIControlEventValueChanged];
+    [_headView addSubview:segmentedControl];
+    
+}
+
+- (void)segmentedControlClick:(UISegmentedControl *)segmentedControl{
+    NSInteger index = segmentedControl.selectedSegmentIndex;
+    switch (index) {
+        case 0:
+            _qingNiuWeightUnit = QingNiuRegisterWeightUnitKg;
+            break;
+        case 1:
+            _qingNiuWeightUnit = QingNiuRegisterWeightUnitLb;
+            break;
+        case 2:
+            _qingNiuWeightUnit = QingNiuRegisterWeightUnitJin;
+            break;
+        default:
+            break;
+    }
+    //设置测量单位
+    [QingNiuSDK setWeightUnit:_qingNiuWeightUnit];
 }
 
 - (void)chooseGender:(UIButton *)button
@@ -115,12 +150,12 @@
         [button setTitle:@"停止扫描" forState:UIControlStateNormal];
         button.tag = 2;
         [QingNiuSDK startBleScan:nil scanSuccessBlock:^(QingNiuDevice *qingNiuDevice) {
-            NSLog(@"%@",qingNiuDevice);
             if (qingNiuDevice.deviceState == QingNiuDeviceStatePoweredOff) {
                 NSLog(@"关机");
             }else {
                 NSLog(@"开机");
             }
+            NSLog(@"%@",qingNiuDevice);
             if (_allScanDevice.count == 0) {
                 [_allScanDevice insertObject:qingNiuDevice atIndex:0];
             }else {
@@ -138,11 +173,11 @@
             [_tableView reloadData];
         } scanFailBlock:^(QingNiuScanDeviceFail qingNiuScanDeviceFail) {
             NSLog(@"%ld",(long)qingNiuScanDeviceFail);
-            if (qingNiuScanDeviceFail == QingNiuScanDeviceFailValidationFailure) {
-                [QingNiuSDK registerApp:@"123456789" andReleaseModeFlag:NO registerAppBlock:^(QingNiuRegisterAppState qingNiuRegisterAppState) {
-                    NSLog(@"%ld",(long)qingNiuRegisterAppState);
-                }];
-            }
+            //            if (qingNiuScanDeviceFail == QingNiuScanDeviceFailValidationFailure) {
+            //                [QingNiuSDK registerApp:@"123456789" andReleaseModeFlag:NO registerAppBlock:^(QingNiuRegisterAppState qingNiuRegisterAppState) {
+            //                    NSLog(@"%ld",(long)qingNiuRegisterAppState);
+            //                }];
+            //            }
         }];
     }else {//申明：在实际开发过程当中，如果扫描到设备就连接的话，停止扫描方法可不调用，因为连接方法会停止扫描
         [button setTitle:@"开始扫描" forState:UIControlStateNormal];
@@ -180,7 +215,10 @@
         }
         NSDictionary *oneIndex = _deviceData[indexPath.row];
         cell.textLabel.text = oneIndex[@"name"];
-        cell.detailTextLabel.text = [oneIndex[@"value"] stringByAppendingString:oneIndex[@"unit"]];
+        
+        
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@",oneIndex[@"value"],oneIndex[@"unit"]];
+        
         return cell;
     }
 }
@@ -235,9 +273,11 @@
 
 - (NSMutableArray *)getShowDeviceData:(NSDictionary *)deviceData
 {
+    _deviceDataDic = deviceData;
+    //其中 体年龄、肌肉量、去脂体重、体型不是一定会返回的 是某些第三方SDK接入商才有的
     [_deviceData removeAllObjects];
     if (deviceData[@"weight"] != nil) {
-        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"体重",@"name",deviceData[@"weight"],@"value",@"kg",@"unit", nil]];
+        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"体重",@"name",deviceData[@"weight"],@"value",deviceData[@"weight_unit"],@"unit", nil]];
     }
     if (deviceData[@"bmi"] != nil) {
         [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"bmi",@"name",deviceData[@"bmi"],@"value",@"",@"unit", nil]];
@@ -261,7 +301,7 @@
         [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"骨骼肌率",@"name",deviceData[@"muscle"],@"value",@"%",@"unit", nil]];
     }
     if (deviceData[@"bone"] != nil) {
-        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"骨量",@"name",deviceData[@"bone"],@"value",@"kg",@"unit", nil]];
+        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"骨量",@"name",deviceData[@"bone"],@"value",deviceData[@"weight_unit"],@"unit", nil]];
     }
     if (deviceData[@"protein"] != nil) {
         [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"蛋白质",@"name",deviceData[@"protein"],@"value",@"%",@"unit", nil]];
@@ -270,10 +310,10 @@
         [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"体年龄",@"name",deviceData[@"bodyage"],@"value",@"岁",@"unit", nil]];
     }
     if (deviceData[@"sinew"] != nil) {
-        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"肌肉量",@"name",deviceData[@"sinew"],@"value",@"kg",@"unit", nil]];
+        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"肌肉量",@"name",deviceData[@"sinew"],@"value",deviceData[@"weight_unit"],@"unit", nil]];
     }
     if (deviceData[@"fat_free_weight"] != nil) {
-        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"去脂体重",@"name",deviceData[@"fat_free_weight"],@"value",@"kg",@"unit", nil]];
+        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"去脂体重",@"name",deviceData[@"fat_free_weight"],@"value",deviceData[@"weight_unit"],@"unit", nil]];
     }
     if (deviceData[@"body_shape"] != nil) {
         [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"体型",@"name",[self getBodyShapeDescriptionWithBodyShape:deviceData[@"body_shape"]],@"value",@"",@"unit", nil]];
@@ -285,6 +325,7 @@
         [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"电阻",@"name",deviceData[@"resistance"],@"value",@"",@"unit", nil]];
     }
     return _deviceData;
+    
 }
 
 - (NSString *)getBodyShapeDescriptionWithBodyShape:(NSString *)bodyShape
@@ -378,5 +419,26 @@
     //        NSLog(@"%ld",(long)qingNiuDeviceDisconnectState);
     //    }];
 }
+
+#pragma mark - 以下两个方法是某个别公司的特殊要求，可不理会
+#pragma mark 快速连接
+- (void)simpleGetData
+{
+    QingNiuUser *user = [[QingNiuUser alloc] initUserWithUserId:@"pyf" andHeight:176 andGender:1 andBirthday:@"1992-01-10"];
+    
+    [QingNiuSDK simpleGetData:user scanFailBlock:^(QingNiuScanDeviceFail qingNiuScanDeviceFail) {
+        NSLog(@"%ld",(long)qingNiuScanDeviceFail);
+    } connectSuccessBlock:^(NSMutableDictionary *deviceData, QingNiuDeviceConnectState qingNiuDeviceConnectState) {
+        if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateIsWeighting) {
+            NSLog(@"实时体重：%@",deviceData[@"weight"]);
+        }else if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateWeightOver){
+            NSLog(@"完成：%@",deviceData);
+        }
+    } connectFailBlock:^(QingNiuDeviceConnectState qingNiuDeviceConnectState) {
+        NSLog(@"%ld",(long)qingNiuDeviceConnectState);
+    }];
+}
+
+
 
 @end

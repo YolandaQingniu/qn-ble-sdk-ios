@@ -289,6 +289,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/sdkDemo/QingNiuSDK",
+					"$(PROJECT_DIR)/sdkDemo/qingniuSdk",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qingniu.sdkDemo;
@@ -307,6 +308,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/sdkDemo/QingNiuSDK",
+					"$(PROJECT_DIR)/sdkDemo/qingniuSdk",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qingniu.sdkDemo;

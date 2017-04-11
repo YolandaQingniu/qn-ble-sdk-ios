@@ -6,8 +6,8 @@ You can use most of yolanda company's scale after integration of this SDK succes
 If you need Android version, please click [here](../../../qn-ble-sdk-ios) file
 
 
-## The newest version `2.6` [please download here](../../releases/download/2.6/qn-ios-ble-sdk-2.6.zip)
-* Optimize performance
+## The newest version `2.7` [please download here](../../releases/download/2.7/qn-ios-ble-sdk-2.7.zip)
+* Support set weight unit(kg,lb,jin)
 
 [All version](../../releases)
 
@@ -23,42 +23,59 @@ If you need Android version, please click [here](../../../qn-ble-sdk-ios) file
   if you had configured as above in your project then skip it, if no please do follow the steps to configure, otherwise it will affect the use of SDK
 
 ### Use manual
-1.setLogFlag, setting open/turn off printing switch。[QingNiuSDK setLogFlag:YES];you can checking the callback information when setting into YES
-* registerApp,Before using other methods, please call this method first, and make sure call under network (can be call when you log in)in the first time. There will be an expiration time for each verification, it will not be paired after expiration time and please re-call the method. So we advise you call this method in didFinishLaunchingWithOptions each time
- ```objective-c
- //Register Yolanda App
- //appid： distributed by yolanda before apply to use SDK
- //releaseModeFlag  YES: Its release mode, appid need to provide by Yolanda. NO: Its testing mode, appid can use @"123456789" to testing
- //registerAppBlock：Verify appid, you can processing according to different return parameter
- [QingNiuSDK registerApp:@"123456789" andReleaseModeFlag:NO registerAppBlock:^(QingNiuRegisterAppState qingNiuRegisterAppState) {
-     NSLog(@"%ld",(long)qingNiuRegisterAppState);
- }];
- ```
+1. setLogFlag, setting open/turn off printing switch。
 
+    ```objective-c
+    //you can checking the callback information when setting into YES
+    [QingNiuSDK setLogFlag:YES];
+    ```
+
+2. registerApp,Before using other methods, please call this method first we advise you call this method in didFinishLaunchingWithOptions each time
+
+     ```objective-c
+     //Register Yolanda App
+     //appid： distributed by yolanda before apply to use SDK
+     //releaseModeFlag  YES: Its release mode, appid need to provide by Yolanda. NO: Its testing mode, appid can use @"123456789" to testing
+     //registerAppBlock：Verify appid, you can processing according to different return parameter
+     [QingNiuSDK registerApp:@"123456789" andReleaseModeFlag:NO registerAppBlock:^(QingNiuRegisterAppState qingNiuRegisterAppState) {
+         NSLog(@"%ld",(long)qingNiuRegisterAppState);
+     }];
+     ```
+     
 3. startBleScan, The first step for weighing. its use to find the surrounding device
-```objective-c
-//qingNiuDevice ：use nil when call first time, it will pair all nearby device, save the macAddress or name attribute after finding the target device so that you can connect to this specific device next time(please note: QingNiuPeripheral property does not support archive which means archive directly for the Device, if you want to pair this specific device please save the macAddress or name attribute for quick use next time, deviceState: judging the switch state of device
-//scanSuccessBlock：Callback after finding successfully
-//scanFailBlock：Callback after fail, it will return the fail reason
-[QingNiuSDK startBleScan:nil scanSuccessBlock:^(QingNiuDevice *qingNiuDevice) {
 
- } scanFailBlock:^(QingNiuScanDeviceFail qingNiuScanDeviceFail) {
+    ```objective-c
+    //qingNiuDevice ：use nil when call first time, it will pair all nearby device, save the macAddress or name attribute after finding the target device so that you can connect to this specific device next time(please note: QingNiuPeripheral property does not support archive which means archive directly for the Device, if you want to pair this specific device please save the macAddress or name attribute for quick use next time, deviceState: judging the switch state of device
+    //scanSuccessBlock：Callback after finding successfully
+    //scanFailBlock：Callback after fail, it will return the fail reason
+    [QingNiuSDK startBleScan:nil scanSuccessBlock:^(QingNiuDevice *qingNiuDevice) {
+    
+     } scanFailBlock:^(QingNiuScanDeviceFail qingNiuScanDeviceFail) {
+    
+    }];
+    ```
+    
+4. setWeightUnit
 
-}];
-```
+    ```objective-c
+    //The default unit is kilograms
+    //explam：set the unit to kilograms
+    [QingNiuSDK setWeightUnit:QingNiuRegisterWeightUnitKg];
+    ```
 
 4. connectDevice：It can connect to device and get the measurement data with this function after call with startBleScan successfully
-```objective-c
-// qingNiuDevice：use with the qingNiuDevice parameter which call with startBleScan, please make sure each parameter have related value
-// qingNiuUser：The current measurement user's information, it is all necessary parameters under this Item, please make sure different user with different userid, height in cm,Gender( Male: 1 Female: 0),birthday formate :yyyy-MM-dd(example：1990-06-23). you can call the initialization method in the QingNiuUser
-	// connectSuccessBlock：It will return the measurement data deviceData together with connect status, QingNiuDeviceConnectStateWeightOver means a normal completed measurement, QingNiuDeviceConnectStateSavedData means: This received data is stored data, if there are multiple stored data, please distinguish according to user_id.
-	//connectFailBlock：The return of fail in connect or receiving data, you can operate as the indicate message
-[QingNiuSDK connectDevice:qingNiuDevice user:user connectSuccessBlock:^(NSMutableDictionary *deviceData, QingNiuDeviceConnectState qingNiuDeviceConnectState) {
 
-        } connectFailBlock:^(QingNiuDeviceConnectState qingNiuDeviceConnectState) {
-
-        }];
-```
+    ```objective-c
+    // qingNiuDevice：use with the qingNiuDevice parameter which call with startBleScan, please make sure each parameter have related value
+    // qingNiuUser：The current measurement user's information, it is all necessary parameters under this Item, please make sure different user with different userid, height in cm,Gender( Male: 1 Female: 0),birthday formate :yyyy-MM-dd(example：1990-06-23). you can call the initialization method in the QingNiuUser
+    // connectSuccessBlock：It will return the measurement data deviceData together with connect status, QingNiuDeviceConnectStateWeightOver means a normal completed measurement, QingNiuDeviceConnectStateSavedData means: This received data is stored data, if there are multiple stored data, please distinguish according to user_id.
+    //connectFailBlock：The return of fail in connect or receiving data, you can operate as the indicate message
+    [QingNiuSDK connectDevice:qingNiuDevice user:user connectSuccessBlock:^(NSMutableDictionary *deviceData, QingNiuDeviceConnectState qingNiuDeviceConnectState) {
+    
+    } connectFailBlock:^(QingNiuDeviceConnectState qingNiuDeviceConnectState) {
+    
+    }];
+    ```
 
 5. If you want to find device yourself, please call this function with advertisementData and peripheral.
 steps operate as above
@@ -70,39 +87,46 @@ steps operate as above
 ### Block Manual
 
 * Verify the app block, it will return status
-```objective-c
-typedef void(^RegisterAppBlock)(QingNiuRegisterAppState qingNiuRegisterAppState);
-```
+
+    ```objective-c
+    typedef void(^RegisterAppBlock)(QingNiuRegisterAppState qingNiuRegisterAppState);
+    ```
 
 * Block finding successfully, it will return the successfully device qingNiuDevice
-```objective-c
-typedef void(^ScanSuccessBlock)(QingNiuDevice *qingNiuDevice);
-```
+ 
+    ```objective-c
+    typedef void(^ScanSuccessBlock)(QingNiuDevice *qingNiuDevice);
+    ```
 
 * Block finding fail, it will return the fail device qingNiuDevice and the reason
-```objective-c
-typedef void(^ScanFailBlock)(QingNiuScanDeviceFail qingNiuScanDeviceFail);
-```
+
+    ```objective-c
+    typedef void(^ScanFailBlock)(QingNiuScanDeviceFail qingNiuScanDeviceFail);
+    ```
 
 * The block connect successfully, it will return the successfully measurement data and qingNiuDeviceConnectState
-```objective-c
-typedef void(^ConnectSuccessBlock)(NSMutableDictionary *deviceData,QingNiuDeviceConnectState qingNiuDeviceConnectState);
-```
+
+    ```objective-c
+    typedef void(^ConnectSuccessBlock)(NSMutableDictionary *deviceData,QingNiuDeviceConnectState qingNiuDeviceConnectState);
+    ```
 
 * The block connect fail, it will return the fail qingNiuDeviceConnectState and the reason
-```objective-c
-typedef void(^ConnectFailBlock)(QingNiuDeviceConnectState qingNiuDeviceConnectState);
-```
+
+    ```objective-c
+    typedef void(^ConnectFailBlock)(QingNiuDeviceConnectState qingNiuDeviceConnectState);
+    ```
 
 * Block connect fail，return the fail connect qingNiuDeviceDisconnectState reason(Possible reason: call with disconnect port，use with problem parameter device or had disconnect with current device)
-```objective-c
-typedef void(^DisconnectFailBlock)(QingNiuDeviceDisconnectState qingNiuDeviceDisconnectState);
-```
+
+    ```objective-c
+    typedef void(^DisconnectFailBlock)(QingNiuDeviceDisconnectState qingNiuDeviceDisconnectState);
+    ```
 
 * Disconnect successfully (it will return the status of Disconnect successfully)
-```objective-c
-typedef void(^DisconnectSuccessBlock)(QingNiuDeviceDisconnectState qingNiuDeviceDisconnectState);
-```
+
+    ```objective-c
+    typedef void(^DisconnectSuccessBlock)(QingNiuDeviceDisconnectState qingNiuDeviceDisconnectState);
+    ```
 
 * the return deviceData meaning:
 
@@ -122,9 +146,10 @@ typedef void(^DisconnectSuccessBlock)(QingNiuDeviceDisconnectState qingNiuDevice
 |protein|protein
 
 Note：Below is expand are to expand indicators, you can reach only after reach a cooperation agreement in SDK access
+
 |Field|explanation|
 |:----|:-------|
-|bodyage|Body age
+|bodyage|Body age|
 |sinew|Muscle mass
 |fat_free_weight|Fat weight
 |body_shape|Body shape
@@ -133,50 +158,62 @@ Note：Below is expand are to expand indicators, you can reach only after reach 
 
 #### Example
 * Verify information
-```objective-c
-typedef NS_ENUM(NSInteger,QingNiuRegisterAppState) {// verity appid status
-  QingNiuRegisterAppStateSuccess = 0,           //successfully
-  QingNiuRegisterAppStateFailParamsError = 1,   //appid fail，make sure recall under right appid
-  QingNiuRegisterAppStateFailVersionTooLow = 2, //Version too low or too high, please contact with customer service for new SDK
-};
-```
+
+    ```objective-c
+    typedef NS_ENUM(NSInteger,QingNiuRegisterAppState) {// verity appid status
+      QingNiuRegisterAppStateSuccess = 0,           //successfully
+      QingNiuRegisterAppStateFailParamsError = 1,   //appid fail，make sure recall under right appid
+      QingNiuRegisterAppStateFailVersionTooLow = 2, //Version too low or too high, please contact with customer service for new SDK
+    };
+    ```
 
 * Fail reason of pair device
-```objective-c
-typedef NS_ENUM(NSInteger,QingNiuScanDeviceFail) {
-  QingNiuScanDeviceFailUnsupported = 0,       //device do not support Bluetooth 4.0
-  QingNiuScanDeviceFailPoweredOff = 1,        //device turn off(turn on bluetooth on mobile)
-  QingNiuScanDeviceFailValidationFailure = 2, //app verify fail(recall registerApp port)
-  QingNiuScanDevicePoweredOn = 3,             //Bluetooth is on(This is not fail example，its For compatibility with previous versions)
-};
-```
+
+    ```objective-c
+    typedef NS_ENUM(NSInteger,QingNiuScanDeviceFail) {
+      QingNiuScanDeviceFailUnsupported = 0,       //device do not support Bluetooth 4.0
+      QingNiuScanDeviceFailPoweredOff = 1,        //device turn off(turn on bluetooth on mobile)
+      QingNiuScanDeviceFailValidationFailure = 2, //app verify fail(recall registerApp port)
+      QingNiuScanDevicePoweredOn = 3,             //Bluetooth is on(This is not fail example，its For compatibility with previous versions)
+    };
+    ```
 
 * All kinds of status example during connection (0-4 is the example of fail ,5-10 is successfully example )
-```objective-c
-typedef NS_ENUM(NSInteger,QingNiuDeviceConnectState) {
-  QingNiuDeviceConnectStateParamsError = 0,       //connected parameter error ( like:qingNiuUser，qingNiuDevice，please rescan and connect if appears error)
-  QingNiuDeviceConnectStateConnectFail = 1,       //Fail to connect device(reconnect or rescan)
-  QingNiuDeviceConnectStateDiscoverFail = 2,      //Fail to check the feature or service of this device(reconnect)
-  QingNiuDeviceConnectStateDataError = 3,         //Fail to receiving data(reconnect)
-  QingNiuDeviceConnectStateLowPower = 4,          //Device Lack of power(lack of power)
-  QingNiuDeviceConnectStateIsWeighting = 5,       //measuring(receiving real time data)
-  QingNiuDeviceConnectStateWeightOver = 6,        //finish measurement(receiving normal measurement data)
-  QingNiuDeviceConnectStateIsGettingSavedData= 7, //Receiving device stored data now
-  QingNiuDeviceConnectStateGetSavedDataOver＝8,   //Received all stored data(deviceData value: nil)
-  QingNiuDeviceConnectStateDisConnected = 9,      //Auto disconnect after measurement(deviceData: nil)
-  QingNiuDeviceConnectStateConnectedSuccess = 10, //callback of connect successfully(deviceData: nil)
-};
-```
+
+    ```objective-c
+    typedef NS_ENUM(NSInteger,QingNiuDeviceConnectState) {
+      QingNiuDeviceConnectStateParamsError = 0,       //connected parameter error ( like:qingNiuUser，qingNiuDevice，please rescan and connect if appears error)
+      QingNiuDeviceConnectStateConnectFail = 1,       //Fail to connect device(reconnect or rescan)
+      QingNiuDeviceConnectStateDiscoverFail = 2,      //Fail to check the feature or service of this device(reconnect)
+      QingNiuDeviceConnectStateDataError = 3,         //Fail to receiving data(reconnect)
+      QingNiuDeviceConnectStateLowPower = 4,          //Device Lack of power(lack of power)
+      QingNiuDeviceConnectStateIsWeighting = 5,       //measuring(receiving real time data)
+      QingNiuDeviceConnectStateWeightOver = 6,        //finish measurement(receiving normal measurement data)
+      QingNiuDeviceConnectStateIsGettingSavedData= 7, //Receiving device stored data now
+      QingNiuDeviceConnectStateGetSavedDataOver＝8,   //Received all stored data(deviceData value: nil)
+      QingNiuDeviceConnectStateDisConnected = 9,      //Auto disconnect after measurement(deviceData: nil)
+      QingNiuDeviceConnectStateConnectedSuccess = 10, //callback of connect successfully(deviceData: nil)
+    };
+    ```
 
 * Disconnected state
-```objective-c
-typedef NS_ENUM(NSInteger,QingNiuDeviceDisconnectState) {// All kinds of status after disconnect
-  QingNiuDeviceDisconnectStateDisConnectSuccess = 0,  //Disconnect successfully
-  QingNiuDeviceDisconnectStateParamsError = 1,        //connected parameter error
-  QingNiuDeviceDisconnectStateIsDisConnected = 2,     //been in disconnect status
-};
-```
 
+    ```objective-c
+    typedef NS_ENUM(NSInteger,QingNiuDeviceDisconnectState) {// All kinds of status after disconnect
+      QingNiuDeviceDisconnectStateDisConnectSuccess = 0,  //Disconnect successfully
+      QingNiuDeviceDisconnectStateParamsError = 1,        //connected parameter error
+      QingNiuDeviceDisconnectStateIsDisConnected = 2,     //been in disconnect status
+    };
+    ```
+* WeightUnit state
+
+    ```
+    typedef NS_ENUM(NSInteger,QingNiuWeightUnit) {//weightUni
+        QingNiuRegisterWeightUnitKg = 0,//kg
+        QingNiuRegisterWeightUnitLb = 1,//lb
+        QingNiuRegisterWeightUnitJin = 2,//斤
+    };
+    ```
 
 ## please note:
 
@@ -190,3 +227,5 @@ typedef NS_ENUM(NSInteger,QingNiuDeviceDisconnectState) {// All kinds of status 
 If you have anything question please refer related documents carefully, if you have any questions about API please read our API user manual first
 
 If still can not solve this problem please contact us for technical support, we will arrange SDK technical team to support you, thank you !
+
+
