@@ -29,7 +29,7 @@
     [QingNiuSDK setLogFlag:YES];
     
     //注册轻牛APP
-    [QingNiuSDK registerApp:@"vipsdk" andReleaseModeFlag:NO registerAppBlock:^(QingNiuRegisterAppState qingNiuRegisterAppState) {
+    [QingNiuSDK registerApp:@"123456789" andReleaseModeFlag:NO registerAppBlock:^(QingNiuRegisterAppState qingNiuRegisterAppState) {
         NSLog(@"%ld",(long)qingNiuRegisterAppState);
     }];
     // Override point for customization after application launch.
