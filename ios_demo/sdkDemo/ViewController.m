@@ -216,8 +216,11 @@
         NSDictionary *oneIndex = _deviceData[indexPath.row];
         cell.textLabel.text = oneIndex[@"name"];
         
-        
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@",oneIndex[@"value"],oneIndex[@"unit"]];
+        if (oneIndex[@"unit"] == nil) {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",oneIndex[@"value"]];
+        }else{
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@",oneIndex[@"value"],oneIndex[@"unit"]];
+        }
         
         return cell;
     }
@@ -310,19 +313,40 @@
         [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"体年龄",@"name",deviceData[@"bodyage"],@"value",@"岁",@"unit", nil]];
     }
     if (deviceData[@"sinew"] != nil) {
-        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"肌肉量",@"name",deviceData[@"sinew"],@"value",deviceData[@"weight_unit"],@"unit", nil]];
+        if ([deviceData[@"sinew"] length] > 0) {
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"肌肉量",@"name",deviceData[@"sinew"],@"value",deviceData[@"weight_unit"],@"unit", nil]];
+        }else{
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"肌肉量",@"name",deviceData[@"sinew"],@"value", nil]];
+        }
     }
     if (deviceData[@"fat_free_weight"] != nil) {
-        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"去脂体重",@"name",deviceData[@"fat_free_weight"],@"value",deviceData[@"weight_unit"],@"unit", nil]];
+        if ([deviceData[@"fat_free_weight"] length] > 0) {
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"去脂体重",@"name",deviceData[@"fat_free_weight"],@"value",deviceData[@"weight_unit"],@"unit", nil]];
+        }else{
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"去脂体重",@"name",deviceData[@"fat_free_weight"],@"value", nil]];
+        }
+        
     }
     if (deviceData[@"body_shape"] != nil) {
-        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"体型",@"name",[self getBodyShapeDescriptionWithBodyShape:deviceData[@"body_shape"]],@"value",@"",@"unit", nil]];
+        if ([deviceData[@"body_shape"] length] > 0) {
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"体型",@"name",[self getBodyShapeDescriptionWithBodyShape:deviceData[@"body_shape"]],@"value",@"",@"unit", nil]];
+        }else{
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"体型",@"name",[self getBodyShapeDescriptionWithBodyShape:deviceData[@"body_shape"]],@"value", nil]];
+        }
     }
     if (deviceData[@"score"] != nil) {
-        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"分数",@"name",deviceData[@"score"],@"value",@"",@"unit", nil]];
+        if ([deviceData[@"score"] length] > 0) {
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"分数",@"name",deviceData[@"score"],@"value",@"",@"unit", nil]];
+        }else{
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"分数",@"name",deviceData[@"score"],@"value", nil]];
+        }
     }
     if (deviceData[@"resistance"] != nil) {
-        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"电阻",@"name",deviceData[@"resistance"],@"value",@"",@"unit", nil]];
+        if ([deviceData[@"resistance"] length] > 0) {
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"电阻",@"name",deviceData[@"resistance"],@"value",@"",@"unit", nil]];
+        }else{
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"电阻",@"name",deviceData[@"resistance"],@"value", nil]];
+        }
     }
     return _deviceData;
     

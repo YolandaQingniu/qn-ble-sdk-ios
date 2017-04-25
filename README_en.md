@@ -6,8 +6,9 @@ You can use most of yolanda company's scale after integration of this SDK succes
 If you need Android version, please click [here](../../../qn-ble-sdk-ios) file
 
 
-## The newest version `2.7` [please download here](../../releases/download/2.7/qn-ios-ble-sdk-2.7.zip)
-* Support set weight unit(kg,lb,jin)
+## The newest version `3.0` [please download here](../../releases/download/3.0/qn-ios-ble-sdk-3.0.zip) 
+* Repair a part of the equipment is difficult to connect the problem
+* increase unit `lb`、`斤`
 
 [All version](../../releases)
 

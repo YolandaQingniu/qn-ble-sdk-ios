@@ -291,6 +291,7 @@
 					"$(PROJECT_DIR)/sdkDemo/QingNiuSDK",
 					"$(PROJECT_DIR)/sdkDemo/qingniuSdk",
 					"$(PROJECT_DIR)/sdkDemo/qn-ios-ble-sdk-2.7/QingNiuSDK",
+					"$(PROJECT_DIR)/sdkDemo/qn-ios-ble-sdk-3.0",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qingniu.sdkDemo;
@@ -311,6 +312,7 @@
 					"$(PROJECT_DIR)/sdkDemo/QingNiuSDK",
 					"$(PROJECT_DIR)/sdkDemo/qingniuSdk",
 					"$(PROJECT_DIR)/sdkDemo/qn-ios-ble-sdk-2.7/QingNiuSDK",
+					"$(PROJECT_DIR)/sdkDemo/qn-ios-ble-sdk-3.0",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qingniu.sdkDemo;
