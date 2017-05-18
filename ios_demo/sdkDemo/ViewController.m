@@ -310,7 +310,11 @@
         [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"蛋白质",@"name",deviceData[@"protein"],@"value",@"%",@"unit", nil]];
     }
     if (deviceData[@"bodyage"] != nil) {
-        [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"体年龄",@"name",deviceData[@"bodyage"],@"value",@"岁",@"unit", nil]];
+        if ([deviceData[@"bodyage"] length] > 0) {
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"体年龄",@"name",deviceData[@"bodyage"],@"value",@"岁",@"unit", nil]];
+        }else{
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"体年龄",@"name",deviceData[@"bodyage"],@"value", nil]];
+        }
     }
     if (deviceData[@"sinew"] != nil) {
         if ([deviceData[@"sinew"] length] > 0) {
