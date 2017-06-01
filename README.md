@@ -8,7 +8,7 @@
 如需使用 android 版,请点击 [这里](../../../qn-ble-sdk-android)
 
 
-## 最新版本 `3.2` [下载地址](../../releases/download/3.1/qn-ios-ble-sdk-3.2.zip)
+## 最新版本 `3.2` [下载地址](../../releases/download/3.2/qn-ios-ble-sdk-3.2.zip)
 * 增加对新款秤的支持
 * 提高脂肪率的兼容范围至75
 
