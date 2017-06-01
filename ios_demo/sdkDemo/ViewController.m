@@ -149,6 +149,8 @@
     if (button.tag == 1) {
         [button setTitle:@"停止扫描" forState:UIControlStateNormal];
         button.tag = 2;
+        [_allScanDevice removeAllObjects];
+        [_tableView reloadData];
         [QingNiuSDK startBleScan:nil scanSuccessBlock:^(QingNiuDevice *qingNiuDevice) {
             if (qingNiuDevice.deviceState == QingNiuDeviceStatePoweredOff) {
                 NSLog(@"关机");
@@ -157,14 +159,14 @@
             }
             NSLog(@"%@",qingNiuDevice);
             if (_allScanDevice.count == 0) {
-                [_allScanDevice insertObject:qingNiuDevice atIndex:0];
+                [_allScanDevice addObject:qingNiuDevice];
             }else {
                 for (int i = 0; i<_allScanDevice.count; i++) {
                     QingNiuDevice *savedDevice = _allScanDevice[i];
                     if ([savedDevice.macAddress isEqualToString:qingNiuDevice.macAddress]) {
                         break;
                     }else if (i == _allScanDevice.count - 1){
-                        [_allScanDevice insertObject:qingNiuDevice atIndex:0];
+                        [_allScanDevice addObject:qingNiuDevice];
                         break;
                     }
                 }
@@ -183,6 +185,9 @@
         [button setTitle:@"开始扫描" forState:UIControlStateNormal];
         button.tag = 1;
         [QingNiuSDK stopBleScan];
+        [_allScanDevice removeAllObjects];
+        [_tableView reloadData];
+        
     }
 }
 
