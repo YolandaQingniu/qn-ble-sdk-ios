@@ -8,7 +8,7 @@
 
 /*  QingNiuSDKVersion
  *  3.2
- *  增加新款秤的支持、提高脂肪率的兼容范围至75
+ *  增加新款秤的支持
  */
 
 #import <Foundation/Foundation.h>
