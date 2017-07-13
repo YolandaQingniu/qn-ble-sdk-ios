@@ -209,7 +209,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:deviceCell];
         }
         QingNiuDevice *qingNiuDevice = _allScanDevice[indexPath.row];
-        cell.textLabel.text = qingNiuDevice.name;
+        cell.textLabel.text = qingNiuDevice.model;
         cell.detailTextLabel.text = qingNiuDevice.macAddress;
         return cell;
     } else {
@@ -352,9 +352,16 @@
     }
     if (deviceData[@"resistance"] != nil) {
         if ([deviceData[@"resistance"] length] > 0) {
-            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"电阻",@"name",deviceData[@"resistance"],@"value",@"",@"unit", nil]];
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"电阻一",@"name",deviceData[@"resistance"],@"value",@"",@"unit", nil]];
         }else{
-            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"电阻",@"name",deviceData[@"resistance"],@"value", nil]];
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"电阻一",@"name",deviceData[@"resistance"],@"value", nil]];
+        }
+    }
+    if (deviceData[@"resistance_second"] != nil) {
+        if ([deviceData[@"resistance_second"] length] > 0) {
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"电阻二",@"name",deviceData[@"resistance_second"],@"value",@"",@"unit", nil]];
+        }else{
+            [_deviceData addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"电阻二",@"name",deviceData[@"resistance_second"],@"value", nil]];
         }
     }
     return _deviceData;

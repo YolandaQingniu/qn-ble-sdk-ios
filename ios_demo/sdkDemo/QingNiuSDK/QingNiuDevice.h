@@ -59,7 +59,8 @@ typedef void(^DisconnectSuccessBlock)(QingNiuDeviceDisconnectState qingNiuDevice
 typedef NS_ENUM(NSUInteger,QingNiuMethod) {
     QingNiuMethodHealthScale = 1,//体重
     QingNiuMethodTwoElectrode = 2,//两
-    QingNiuMethodFourElectrode = 3,//四
+    QingNiuMethodFourElectrodeV1 = 3,//四V1
+    QingNiuMethodFourElectrodeV2 = 4,//四V2
 };
 
 typedef NS_ENUM(NSInteger, QingNiuDeviceState) {//秤的状态
