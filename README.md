@@ -8,9 +8,8 @@
 如需使用 android 版,请点击 [这里](../../../qn-ble-sdk-android)
 
 
-## 最新版本 `3.3` [下载地址](../../releases/download/3.3/qn-ios-ble-sdk-3.3.zip)
+## 最新版本 `3.4` [下载地址](../../releases/download/3.4/qn-ios-ble-sdk-3.4.zip)
 * 增加对新款秤的支持
-* 增加一次连接可多次测量的情况
 
 [所有版本](../../releases)
 

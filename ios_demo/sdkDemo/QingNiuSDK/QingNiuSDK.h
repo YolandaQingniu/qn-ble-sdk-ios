@@ -7,9 +7,8 @@
 //
 
 /*  QingNiuSDKVersion
- *  3.3
+ *  3.4
  *  增加新款秤的支持
- *  修改秤未息屏时，可多次测量
  */
 
 #import <Foundation/Foundation.h>
@@ -76,7 +75,7 @@ typedef void(^RegisterAppBlock)(QingNiuRegisterAppState qingNiuRegisterAppState)
 
  @param qingNiuDevice 传入之前扫描到的设备
  @param qingNiuUser 传入一个测量的用户资料(传入对象属性说明请参考类：QingNiuUser)
- @param connectSuccessBlock 连接成功之后回调的数据，多次测量则回传多条deviceData，收存储数据时若有多条会回传多条deviceData
+ @param connectSuccessBlock 连接成功之后回调的数据，实时测量的时候只有一条deviceData，收存储数据时若有多条会回传多条deviceData
  @param connectFailBlock 连接失败之后回调的错误原因
  */
 + (void)connectDevice:(QingNiuDevice *)qingNiuDevice user:(QingNiuUser *)qingNiuUser connectSuccessBlock:(ConnectSuccessBlock)connectSuccessBlock connectFailBlock:(ConnectFailBlock)connectFailBlock;
@@ -88,7 +87,7 @@ typedef void(^RegisterAppBlock)(QingNiuRegisterAppState qingNiuRegisterAppState)
  @param peripheral 扫描到的外设对象
  @param centralManager 中心管理者
  @param qingNiuUser 传入一个测量的用户资料(传入对象属性说明请参考类：QingNiuUser)
- @param connectSuccessBlock 连接成功之后回调的数据，多次测量则回传多条deviceData，收存储数据时若有多条会回传多条deviceData
+ @param connectSuccessBlock 连接成功之后回调的数据，实时测量的时候只有一条deviceData，收存储数据时若有多条会回传多条deviceData
  @param connectFailBlock 连接失败之后回调的错误原因
  */
 + (void)connectWithAdvertisementData:(NSDictionary *)advertisementData peripheral:(CBPeripheral *)peripheral centralManager:(CBCentralManager *)centralManager user:(QingNiuUser *)qingNiuUser connectSuccessBlock:(ConnectSuccessBlock)connectSuccessBlock connectFailBlock:(ConnectFailBlock)connectFailBlock;
@@ -109,13 +108,13 @@ typedef void(^RegisterAppBlock)(QingNiuRegisterAppState qingNiuRegisterAppState)
  */
 + (void)clearCache;
 
+/**
+ 连接设备获取数据的简便方法。
 
-/*! @brief 连接设备获取数据的简便方法。
- *
- * @param qingNiuUser：传入一个测量的用户资料(传入对象属性说明请参考类：QingNiuUser)
- * @param scanFailBlock 返回在扫描过程中失败的信息(如果失败则不会进行后续的连接动作)
- * @param connectSuccessBlock 连接成功之后回调的数据，多次测量则回传多条deviceData，该方法不接收存储数据
- * @param connectFailBlock 连接失败之后回调的错误原因
+ @param qingNiuUser 传入一个测量的用户资料(传入对象属性说明请参考类：QingNiuUser)
+ @param scanFailBlock 返回在扫描过程中失败的信息(如果失败则不会进行后续的连接动作)
+ @param connectSuccessBlock 连接成功之后回调的数据，实时测量的时候只有一条deviceData，该方法不接收存储数据
+ @param connectFailBlock 连接失败之后回调的错误原因
  */
 + (void)simpleGetData:(QingNiuUser *)qingNiuUser scanFailBlock:(ScanFailBlock)scanFailBlock connectSuccessBlock:(ConnectSuccessBlock)connectSuccessBlock connectFailBlock:(ConnectFailBlock)connectFailBlock;
 
