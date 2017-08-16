@@ -7,8 +7,8 @@
 //
 
 /*  QingNiuSDKVersion
- *  3.4
- *  增加新款秤的支持
+ *  3.5
+ *  增加最新款称的支持
  */
 
 #import <Foundation/Foundation.h>
