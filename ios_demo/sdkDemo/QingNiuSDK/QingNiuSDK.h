@@ -7,7 +7,7 @@
 //
 
 /*  QingNiuSDKVersion
- *  3.5
+ *  3.5.1
  *  增加最新款称的支持
  */
 
@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger,QingNiuRegisterAppState) {//注册app状态
     QingNiuRegisterAppStateFailParamsError = 1,//注册失败
     QingNiuRegisterAppStateFailVersionTooLow = 2,//版本号过低或过高，需要新的SDK请联系客服
 };
+
 
 //验证app的block，将状态返回
 typedef void(^RegisterAppBlock)(QingNiuRegisterAppState qingNiuRegisterAppState);

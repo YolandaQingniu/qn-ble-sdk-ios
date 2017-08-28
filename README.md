@@ -8,8 +8,8 @@
 如需使用 android 版,请点击 [这里](../../../qn-ble-sdk-android)
 
 
-## 最新版本 `3.5` [下载地址](../../releases/download/3.5/qn-ios-ble-sdk-3.5.zip)
-* 增加对新款秤的支持
+## 最新版本 `3.5.1` [下载地址](../../releases/download/3.5.1/qn-ios-ble-sdk-3.5.1.zip)
+* 优化测量的稳定性
 
 [所有版本](../../releases)
 
