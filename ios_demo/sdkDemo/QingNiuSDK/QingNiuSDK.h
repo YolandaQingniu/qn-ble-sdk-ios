@@ -7,9 +7,11 @@
 //
 
 /*  QingNiuSDKVersion
- *  3.5.1
- *  增加最新款称的支持
+ *  3.5.2
+ *  提高体脂算法的稳定性
+ *  增加更多型号
  */
+
 
 #import <Foundation/Foundation.h>
 #import "QingNiuDevice.h"

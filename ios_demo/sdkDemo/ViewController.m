@@ -151,28 +151,9 @@
         button.tag = 2;
         [_allScanDevice removeAllObjects];
         [_tableView reloadData];
+        __weak ViewController *weekSelf = self;
         [QingNiuSDK startBleScan:nil scanSuccessBlock:^(QingNiuDevice *qingNiuDevice) {
-            if (qingNiuDevice.deviceState == QingNiuDeviceStatePoweredOff) {
-                NSLog(@"关机");
-            }else {
-                NSLog(@"开机");
-            }
-            NSLog(@"%@",qingNiuDevice);
-            if (_allScanDevice.count == 0) {
-                [_allScanDevice addObject:qingNiuDevice];
-            }else {
-                for (int i = 0; i<_allScanDevice.count; i++) {
-                    QingNiuDevice *savedDevice = _allScanDevice[i];
-                    if ([savedDevice.macAddress isEqualToString:qingNiuDevice.macAddress]) {
-                        break;
-                    }else if (i == _allScanDevice.count - 1){
-                        [_allScanDevice addObject:qingNiuDevice];
-                        break;
-                    }
-                }
-            }
-            _scanFlag = YES;
-            [_tableView reloadData];
+            [weekSelf scanDevice:qingNiuDevice];
         } scanFailBlock:^(QingNiuScanDeviceFail qingNiuScanDeviceFail) {
             NSLog(@"%ld",(long)qingNiuScanDeviceFail);
             //            if (qingNiuScanDeviceFail == QingNiuScanDeviceFailValidationFailure) {
@@ -245,38 +226,68 @@
         user.height = [_heightTextField.text intValue];
         user.gender = [_gender intValue];
         user.birthday = _birthdayTextField.text;
+        __weak ViewController *weekSelf = self;
         [QingNiuSDK connectDevice:qingNiuDevice user:user connectSuccessBlock:^(NSMutableDictionary *deviceData, QingNiuDeviceConnectState qingNiuDeviceConnectState) {
-            if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateConnectedSuccess) {
-                [self scanBle:_scanButton];
-                NSLog(@"连接成功%@",deviceData);
-            }
-            else if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateIsWeighting) {
-                NSLog(@"实时体重：%@",deviceData[@"weight"]);
-            }else if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateWeightOver){
-                NSLog(@"测量完毕：%@",deviceData);
-            }else if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateIsGettingSavedData){
-                NSLog(@"正在获取存储数据：%@",deviceData);
-            }else if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateGetSavedDataOver){
-                NSLog(@"存储数据接收完毕：%@",deviceData);
-            }else if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateDisConnected) {
-                /*
-                 1、如果用户需要连续测量，那么就在这里开启一个定时器启动扫描，该方法是在轻牛app里面采用的方式
-                 [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(scanBleAgain) userInfo:nil repeats:NO];
-                 2、如果确保qingNiuDevice对象没有改变，那么可以直接调用connectDevice:方法
-                 */
-                NSLog(@"自动断开连接%@",deviceData);
-            }
-            if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateIsWeighting || qingNiuDeviceConnectState == QingNiuDeviceConnectStateWeightOver || qingNiuDeviceConnectState == QingNiuDeviceConnectStateIsGettingSavedData) {
-                [self getShowDeviceData:deviceData];
-                _scanFlag = NO;
-                [_tableView reloadData];
-            }
+            [weekSelf receiewBleData:deviceData andState:qingNiuDeviceConnectState];
         } connectFailBlock:^(QingNiuDeviceConnectState qingNiuDeviceConnectState) {
             NSLog(@"%ld",(long)qingNiuDeviceConnectState);
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"连接失败" message:[NSString stringWithFormat:@"%@%ld",@"错误码：",(long)qingNiuDeviceConnectState] delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
             [alertView show];
         }];
     }
+}
+
+- (void)receiewBleData:(NSMutableDictionary *)deviceData andState:(QingNiuDeviceConnectState)qingNiuDeviceConnectState{
+    if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateConnectedSuccess) {
+        [self scanBle:_scanButton];
+        NSLog(@"连接成功%@",deviceData);
+    }
+    else if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateIsWeighting) {
+        NSLog(@"实时体重：%@",deviceData[@"weight"]);
+    }else if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateWeightOver){
+        NSLog(@"测量完毕：%@",deviceData);
+    }else if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateIsGettingSavedData){
+        NSLog(@"正在获取存储数据：%@",deviceData);
+    }else if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateGetSavedDataOver){
+        NSLog(@"存储数据接收完毕：%@",deviceData);
+    }else if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateDisConnected) {
+        /*
+         1、如果用户需要连续测量，那么就在这里开启一个定时器启动扫描，该方法是在轻牛app里面采用的方式
+         [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(scanBleAgain) userInfo:nil repeats:NO];
+         2、如果确保qingNiuDevice对象没有改变，那么可以直接调用connectDevice:方法
+         */
+        NSLog(@"自动断开连接%@",deviceData);
+    }
+    if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateIsWeighting || qingNiuDeviceConnectState == QingNiuDeviceConnectStateWeightOver || qingNiuDeviceConnectState == QingNiuDeviceConnectStateIsGettingSavedData) {
+        [self getShowDeviceData:deviceData];
+        _scanFlag = NO;
+        [_tableView reloadData];
+    }
+}
+
+
+- (void)scanDevice:(QingNiuDevice *)qingNiuDevice{
+    if (qingNiuDevice.deviceState == QingNiuDeviceStatePoweredOff) {
+        NSLog(@"关机");
+    }else {
+        NSLog(@"开机");
+    }
+    NSLog(@"%@",qingNiuDevice);
+    if (_allScanDevice.count == 0) {
+        [_allScanDevice addObject:qingNiuDevice];
+    }else {
+        for (int i = 0; i<_allScanDevice.count; i++) {
+            QingNiuDevice *savedDevice = _allScanDevice[i];
+            if ([savedDevice.macAddress isEqualToString:qingNiuDevice.macAddress]) {
+                break;
+            }else if (i == _allScanDevice.count - 1){
+                [_allScanDevice addObject:qingNiuDevice];
+                break;
+            }
+        }
+    }
+    _scanFlag = YES;
+    [_tableView reloadData];
 }
 
 - (NSMutableArray *)getShowDeviceData:(NSDictionary *)deviceData
