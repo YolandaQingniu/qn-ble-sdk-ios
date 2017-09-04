@@ -7,10 +7,9 @@
 //
 
 /*  QingNiuSDKVersion
- *  3.5.2
- *  修改某些型号识别错误的bug
+ *  3.5.3
+ *  修改没有测到阻抗时，也显示数据造成数据显示有误的bug
  */
-
 
 #import <Foundation/Foundation.h>
 #import "QingNiuDevice.h"
