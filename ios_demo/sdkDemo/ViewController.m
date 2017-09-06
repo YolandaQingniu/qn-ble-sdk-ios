@@ -238,8 +238,9 @@
 }
 
 - (void)receiewBleData:(NSMutableDictionary *)deviceData andState:(QingNiuDeviceConnectState)qingNiuDeviceConnectState{
+    __weak ViewController *weakSelf = self;
     if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateConnectedSuccess) {
-        [self scanBle:_scanButton];
+        [weakSelf scanBle:_scanButton];
         NSLog(@"连接成功%@",deviceData);
     }
     else if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateIsWeighting) {
