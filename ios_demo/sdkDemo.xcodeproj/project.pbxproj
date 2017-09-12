@@ -18,7 +18,7 @@
 		7F647B831C4651040001198F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F647B821C4651040001198F /* CoreGraphics.framework */; };
 		7F647B851C4651100001198F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F647B841C4651100001198F /* libsqlite3.0.tbd */; };
 		7F647B871C46517A0001198F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F647B861C46517A0001198F /* MobileCoreServices.framework */; };
-		D23A369B1F5FF1A300E363A6 /* libQingNiuSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D23A36971F5FF1A300E363A6 /* libQingNiuSDK.a */; };
+		D21264C61F67D88D00FC9ABF /* libQingNiuSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D21264C21F67D88D00FC9ABF /* libQingNiuSDK.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,10 +37,10 @@
 		7F647B821C4651040001198F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7F647B841C4651100001198F /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		7F647B861C46517A0001198F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		D23A36971F5FF1A300E363A6 /* libQingNiuSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libQingNiuSDK.a; sourceTree = "<group>"; };
-		D23A36981F5FF1A300E363A6 /* QingNiuDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingNiuDevice.h; sourceTree = "<group>"; };
-		D23A36991F5FF1A300E363A6 /* QingNiuSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingNiuSDK.h; sourceTree = "<group>"; };
-		D23A369A1F5FF1A300E363A6 /* QingNiuUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingNiuUser.h; sourceTree = "<group>"; };
+		D21264C21F67D88D00FC9ABF /* libQingNiuSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libQingNiuSDK.a; sourceTree = "<group>"; };
+		D21264C31F67D88D00FC9ABF /* QingNiuDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingNiuDevice.h; sourceTree = "<group>"; };
+		D21264C41F67D88D00FC9ABF /* QingNiuSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingNiuSDK.h; sourceTree = "<group>"; };
+		D21264C51F67D88D00FC9ABF /* QingNiuUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QingNiuUser.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +50,7 @@
 			files = (
 				7F647B871C46517A0001198F /* MobileCoreServices.framework in Frameworks */,
 				7F647B851C4651100001198F /* libsqlite3.0.tbd in Frameworks */,
-				D23A369B1F5FF1A300E363A6 /* libQingNiuSDK.a in Frameworks */,
+				D21264C61F67D88D00FC9ABF /* libQingNiuSDK.a in Frameworks */,
 				7F647B831C4651040001198F /* CoreGraphics.framework in Frameworks */,
 				7F647B811C464D450001198F /* SystemConfiguration.framework in Frameworks */,
 				7F647B7F1C464D380001198F /* CoreBluetooth.framework in Frameworks */,
@@ -109,10 +109,10 @@
 		D2BE07C61EEA84BB00111376 /* QingNiuSDK */ = {
 			isa = PBXGroup;
 			children = (
-				D23A36971F5FF1A300E363A6 /* libQingNiuSDK.a */,
-				D23A36981F5FF1A300E363A6 /* QingNiuDevice.h */,
-				D23A36991F5FF1A300E363A6 /* QingNiuSDK.h */,
-				D23A369A1F5FF1A300E363A6 /* QingNiuUser.h */,
+				D21264C21F67D88D00FC9ABF /* libQingNiuSDK.a */,
+				D21264C31F67D88D00FC9ABF /* QingNiuDevice.h */,
+				D21264C41F67D88D00FC9ABF /* QingNiuSDK.h */,
+				D21264C51F67D88D00FC9ABF /* QingNiuUser.h */,
 			);
 			path = QingNiuSDK;
 			sourceTree = "<group>";
@@ -148,6 +148,7 @@
 				TargetAttributes = {
 					7F647B301C464A570001198F = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = BV3EPFW3GV;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -301,7 +302,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BV3EPFW3GV;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = sdkDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -329,7 +330,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BV3EPFW3GV;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = sdkDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

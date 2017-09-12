@@ -8,8 +8,8 @@
 如需使用 android 版,请点击 [这里](../../../qn-ble-sdk-android)
 
 
-## 最新版本 `3.5.3` [下载地址](../../releases/download/3.5.3/qn-ios-ble-sdk-3.5.3.zip)
-*  修改没有测到阻抗时，也显示数据造成数据显示有误的bug
+## 最新版本 `3.6` [下载地址](../../releases/download/3.6/qn-ios-ble-sdk-3.6.zip)
+*  增加 是否启动体脂率稳定算法 的开关
 
 [所有版本](../../releases)
 

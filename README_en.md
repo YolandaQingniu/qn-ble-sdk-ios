@@ -6,8 +6,8 @@ You can use most of yolanda company's scale after integration of this SDK succes
 If you need Android version, please click [here](../../../qn-ble-sdk-ios) file
 
 
-## The newest version `3.5.3` [please download here](../../releases/download/3.5.3/qn-ios-ble-sdk-3.5.3.zip) 
-* increase device
+## The newest version `3.6` [please download here](../../releases/download/3.6/qn-ios-ble-sdk-3.6.zip) 
+* increase 
 
 [All version](../../releases)
 

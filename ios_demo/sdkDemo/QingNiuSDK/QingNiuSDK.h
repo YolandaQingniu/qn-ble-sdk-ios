@@ -7,8 +7,8 @@
 //
 
 /*  QingNiuSDKVersion
- *  3.5.3
- *  修改没有测到阻抗时，也显示数据造成数据显示有误的bug
+ *  3.6
+ *  增加"是否启动体脂率稳定算法"的开关
  */
 
 #import <Foundation/Foundation.h>
@@ -40,6 +40,12 @@ typedef void(^RegisterAppBlock)(QingNiuRegisterAppState qingNiuRegisterAppState)
 +(void)setWeightUnit:(QingNiuWeightUnit)qingNiuWeightUnit;
 
 
+/**
+ 是否开始体脂率稳定算法,默认为YES(开启)
+
+ @param enable 启动稳定算法
+ */
++ (void)setSteadyBodyfat:(BOOL)enable;
 
 /**
  获取当前设置的体重单位
