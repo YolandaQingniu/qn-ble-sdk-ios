@@ -227,7 +227,9 @@
         user.gender = [_gender intValue];
         user.birthday = _birthdayTextField.text;
         __weak ViewController *weekSelf = self;
-        [QingNiuSDK connectDevice:qingNiuDevice user:user connectSuccessBlock:^(NSMutableDictionary *deviceData, QingNiuDeviceConnectState qingNiuDeviceConnectState) {
+        [QingNiuSDK connectDevice:qingNiuDevice user:user onLowPowerBlock:^{
+            
+        } connectSuccessBlock:^(NSMutableDictionary *deviceData, QingNiuDeviceConnectState qingNiuDeviceConnectState) {
             [weekSelf receiewBleData:deviceData andState:qingNiuDeviceConnectState];
         } connectFailBlock:^(QingNiuDeviceConnectState qingNiuDeviceConnectState) {
             NSLog(@"%ld",(long)qingNiuDeviceConnectState);
@@ -477,17 +479,20 @@
 - (void)simpleGetData
 {
     QingNiuUser *user = [[QingNiuUser alloc] initUserWithUserId:@"pyf" andHeight:176 andGender:1 andBirthday:@"1992-01-10"];
-    
     [QingNiuSDK simpleGetData:user scanFailBlock:^(QingNiuScanDeviceFail qingNiuScanDeviceFail) {
         NSLog(@"%ld",(long)qingNiuScanDeviceFail);
+    } onLowPowerBlock:^{
+    
     } connectSuccessBlock:^(NSMutableDictionary *deviceData, QingNiuDeviceConnectState qingNiuDeviceConnectState) {
         if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateIsWeighting) {
             NSLog(@"实时体重：%@",deviceData[@"weight"]);
         }else if (qingNiuDeviceConnectState == QingNiuDeviceConnectStateWeightOver){
             NSLog(@"完成：%@",deviceData);
         }
+
     } connectFailBlock:^(QingNiuDeviceConnectState qingNiuDeviceConnectState) {
         NSLog(@"%ld",(long)qingNiuDeviceConnectState);
+
     }];
 }
 

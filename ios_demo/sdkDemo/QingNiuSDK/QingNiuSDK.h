@@ -7,8 +7,8 @@
 //
 
 /*  QingNiuSDKVersion
- *  3.6
- *  增加"是否启动体脂率稳定算法"的开关
+ *  3.7
+ *  增加低电压的回调
  */
 
 #import <Foundation/Foundation.h>
@@ -41,7 +41,7 @@ typedef void(^RegisterAppBlock)(QingNiuRegisterAppState qingNiuRegisterAppState)
 
 
 /**
- 是否开始体脂率稳定算法,默认为YES(开启)
+ 是否开始体脂率稳定算法,默认为YES开始
 
  @param enable 启动稳定算法
  */
@@ -82,10 +82,11 @@ typedef void(^RegisterAppBlock)(QingNiuRegisterAppState qingNiuRegisterAppState)
 
  @param qingNiuDevice 传入之前扫描到的设备
  @param qingNiuUser 传入一个测量的用户资料(传入对象属性说明请参考类：QingNiuUser)
+ @param batteryLowBlock 低电压的回调
  @param connectSuccessBlock 连接成功之后回调的数据，实时测量的时候只有一条deviceData，收存储数据时若有多条会回传多条deviceData
  @param connectFailBlock 连接失败之后回调的错误原因
  */
-+ (void)connectDevice:(QingNiuDevice *)qingNiuDevice user:(QingNiuUser *)qingNiuUser connectSuccessBlock:(ConnectSuccessBlock)connectSuccessBlock connectFailBlock:(ConnectFailBlock)connectFailBlock;
++ (void)connectDevice:(QingNiuDevice *)qingNiuDevice user:(QingNiuUser *)qingNiuUser onLowPowerBlock:(BatteryLowBlock)batteryLowBlock connectSuccessBlock:(ConnectSuccessBlock)connectSuccessBlock connectFailBlock:(ConnectFailBlock)connectFailBlock;
 
 /**
  通过广播连接设备(如果想自己实现设备的扫描，可调用此方法，将扫描到的外设对象和广播包作为参数)
@@ -94,10 +95,11 @@ typedef void(^RegisterAppBlock)(QingNiuRegisterAppState qingNiuRegisterAppState)
  @param peripheral 扫描到的外设对象
  @param centralManager 中心管理者
  @param qingNiuUser 传入一个测量的用户资料(传入对象属性说明请参考类：QingNiuUser)
+ @param batteryLowBlock 低电压的回调
  @param connectSuccessBlock 连接成功之后回调的数据，实时测量的时候只有一条deviceData，收存储数据时若有多条会回传多条deviceData
  @param connectFailBlock 连接失败之后回调的错误原因
  */
-+ (void)connectWithAdvertisementData:(NSDictionary *)advertisementData peripheral:(CBPeripheral *)peripheral centralManager:(CBCentralManager *)centralManager user:(QingNiuUser *)qingNiuUser connectSuccessBlock:(ConnectSuccessBlock)connectSuccessBlock connectFailBlock:(ConnectFailBlock)connectFailBlock;
++ (void)connectWithAdvertisementData:(NSDictionary *)advertisementData peripheral:(CBPeripheral *)peripheral centralManager:(CBCentralManager *)centralManager user:(QingNiuUser *)qingNiuUser onLowPowerBlock:(BatteryLowBlock)batteryLowBlock connectSuccessBlock:(ConnectSuccessBlock)connectSuccessBlock connectFailBlock:(ConnectFailBlock)connectFailBlock;
 
 
 /**
@@ -120,9 +122,10 @@ typedef void(^RegisterAppBlock)(QingNiuRegisterAppState qingNiuRegisterAppState)
 
  @param qingNiuUser 传入一个测量的用户资料(传入对象属性说明请参考类：QingNiuUser)
  @param scanFailBlock 返回在扫描过程中失败的信息(如果失败则不会进行后续的连接动作)
+ @param batteryLowBlock 低电压的回调
  @param connectSuccessBlock 连接成功之后回调的数据，实时测量的时候只有一条deviceData，该方法不接收存储数据
  @param connectFailBlock 连接失败之后回调的错误原因
  */
-+ (void)simpleGetData:(QingNiuUser *)qingNiuUser scanFailBlock:(ScanFailBlock)scanFailBlock connectSuccessBlock:(ConnectSuccessBlock)connectSuccessBlock connectFailBlock:(ConnectFailBlock)connectFailBlock;
++ (void)simpleGetData:(QingNiuUser *)qingNiuUser scanFailBlock:(ScanFailBlock)scanFailBlock onLowPowerBlock:(BatteryLowBlock)batteryLowBlock connectSuccessBlock:(ConnectSuccessBlock)connectSuccessBlock connectFailBlock:(ConnectFailBlock)connectFailBlock;
 
 @end

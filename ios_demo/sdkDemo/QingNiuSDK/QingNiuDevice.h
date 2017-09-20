@@ -23,13 +23,12 @@ typedef NS_ENUM(NSInteger,QingNiuDeviceConnectState) {//连接过程中的各种
     QingNiuDeviceConnectStateConnectFail = 1,//连接设备失败(重新连接或重新扫描再连接)
     QingNiuDeviceConnectStateDiscoverFail = 2,//查找设备的服务或者特性失败(重新连接)
     QingNiuDeviceConnectStateDataError = 3,//接收到的数据出错(重新连接)
-    QingNiuDeviceConnectStateLowPower = 4,//设备低电
-    QingNiuDeviceConnectStateIsWeighting = 5,//正在测量
-    QingNiuDeviceConnectStateWeightOver = 6,//测量完毕
-    QingNiuDeviceConnectStateIsGettingSavedData = 7,//正在获取存储数据
-    QingNiuDeviceConnectStateGetSavedDataOver = 8,//获取完所有的存储数据(此时deviceData的值为nil)
-    QingNiuDeviceConnectStateDisConnected = 9,//测量完毕之后自动断开了连接(此时deviceData为nil)
-    QingNiuDeviceConnectStateConnectedSuccess = 10,//连接成功时候的回调(此时deviceData为nil)
+    QingNiuDeviceConnectStateIsWeighting = 4,//正在测量
+    QingNiuDeviceConnectStateWeightOver = 5,//测量完毕
+    QingNiuDeviceConnectStateIsGettingSavedData = 6,//正在获取存储数据
+    QingNiuDeviceConnectStateGetSavedDataOver = 7,//获取完所有的存储数据(此时deviceData的值为nil)
+    QingNiuDeviceConnectStateDisConnected = 8,//测量完毕之后自动断开了连接(此时deviceData为nil)
+    QingNiuDeviceConnectStateConnectedSuccess = 9,//连接成功时候的回调(此时deviceData为nil)
 };
 
 typedef NS_ENUM(NSInteger,QingNiuDeviceDisconnectState) {//断开连接的各种状态
@@ -47,7 +46,8 @@ typedef void(^ScanFailBlock)(QingNiuScanDeviceFail qingNiuScanDeviceFail);
 typedef void(^ConnectSuccessBlock)(NSMutableDictionary *deviceData,QingNiuDeviceConnectState qingNiuDeviceConnectState);
 //连接失败的block，将失败之后的原因返回
 typedef void(^ConnectFailBlock)(QingNiuDeviceConnectState qingNiuDeviceConnectState);
-
+//设备端低电压
+typedef void (^BatteryLowBlock)();
 //断开连接失败
 typedef void(^DisconnectFailBlock)(QingNiuDeviceDisconnectState qingNiuDeviceDisconnectState);
 //断开连接成功
@@ -61,6 +61,7 @@ typedef NS_ENUM(NSUInteger,QingNiuMethod) {
     QingNiuMethodTwoElectrode = 2,//两
     QingNiuMethodFourElectrodeV1 = 3,//四V1
     QingNiuMethodFourElectrodeV2 = 4,//四V2
+    QingNiuMethodTwoElectrodeV2 = 5,//两V2
 };
 
 typedef NS_ENUM(NSInteger, QingNiuDeviceState) {//秤的状态
