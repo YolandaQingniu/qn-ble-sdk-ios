@@ -7,8 +7,8 @@
 //
 
 /*  QingNiuSDKVersion
- *  3.7
- *  增加低电压的回调
+ *  3.8
+ *  移除测试版SDK的限制 兼容新款型号的设备
  */
 
 #import <Foundation/Foundation.h>
@@ -58,9 +58,8 @@ typedef void(^RegisterAppBlock)(QingNiuRegisterAppState qingNiuRegisterAppState)
  *
  * @attention 调用此方法时保证网络畅通，如果失败会导致蓝牙连接过程不可用
  * @param appid 轻牛开发者ID
- * @param releaseModeFlag 传入YES，则代表当前是发布模式，那么appid需要是轻牛官方提供的。传入NO：则代表当前是测试模式，appid可用@"123456789"进行测试
  */
-+(void)registerApp:(NSString *)appid andReleaseModeFlag:(BOOL)releaseModeFlag registerAppBlock:(RegisterAppBlock)registerAppBlock;
++(void)registerApp:(NSString *)appid registerAppBlock:(RegisterAppBlock)registerAppBlock;
 
 /**
  开始蓝牙扫描。

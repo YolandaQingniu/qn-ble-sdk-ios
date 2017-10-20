@@ -8,8 +8,9 @@
 如需使用 android 版,请点击 [这里](../../../qn-ble-sdk-android)
 
 
-## 最新版本 `3.7` [下载地址](../../releases/download/3.7/qn-ios-ble-sdk-3.7.zip)
-*  增加低电量提醒的接口
+## 最新版本 `3.8` [下载地址](../../releases/download/3.8/qn-ios-ble-sdk-3.8.zip)
+*  移除测试版SDK的限制 
+*  兼容新款型号的设备
 
 [所有版本](../../releases)
 

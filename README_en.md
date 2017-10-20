@@ -6,7 +6,7 @@ You can use most of yolanda company's scale after integration of this SDK succes
 If you need Android version, please click [here](../../../qn-ble-sdk-ios) file
 
 
-## The newest version `3.7` [please download here](../../releases/download/3.7/qn-ios-ble-sdk-3.7.zip) 
+## The newest version `3.8` [please download here](../../releases/download/3.8/qn-ios-ble-sdk-3.8.zip) 
 * increase 
 
 [All version](../../releases)
@@ -35,9 +35,8 @@ If you need Android version, please click [here](../../../qn-ble-sdk-ios) file
      ```objective-c
      //Register Yolanda App
      //appid： distributed by yolanda before apply to use SDK
-     //releaseModeFlag  YES: Its release mode, appid need to provide by Yolanda. NO: Its testing mode, appid can use @"123456789" to testing
      //registerAppBlock：Verify appid, you can processing according to different return parameter
-     [QingNiuSDK registerApp:@"123456789" andReleaseModeFlag:NO registerAppBlock:^(QingNiuRegisterAppState qingNiuRegisterAppState) {
+     [QingNiuSDK registerApp:@"123456789" registerAppBlock:^(QingNiuRegisterAppState qingNiuRegisterAppState) {
          NSLog(@"%ld",(long)qingNiuRegisterAppState);
      }];
      ```
