@@ -37,9 +37,8 @@
     ```
      //注册轻牛APP
      //appid：申请使用SDK之前由轻牛分配的。
-     //releaseModeFlag 传入YES，则代表当前是发布模式，那么appid需要是轻牛官方提供的。传入NO：则代表当前是测试模式，appid可用@"123456789"进行测试
      //registerAppBlock：验证app返回的状态，可根据返回的状态参数做相应的处理。
-    [QingNiuSDK registerApp:@"123456789" andReleaseModeFlag:NO registerAppBlock:^(QingNiuRegisterAppState qingNiuRegisterAppState) {
+    [QingNiuSDK registerApp:@"123456789" registerAppBlock:^(QingNiuRegisterAppState qingNiuRegisterAppState) {
          NSLog(@"%ld",(long)qingNiuRegisterAppState);
      }];
     ```
@@ -66,17 +65,22 @@
 
 5. connectDevice：调用startBleScan方法成功之后，调用此方法连接设备并且获取设备的测量数据
 
-    ```
-    // qingNiuDevice：将调用startBleScan获取到的qingNiuDevice作为参数传入，请确保该对象的每一个属性都有值。
+    ```ios
+    // qingNiuDevice：将调用startBleScan获取到的qingNiuDevice作为参        数传入，请确保该对象的每一个属性都有值。
     // qingNiuUser：当前测量用户的信息。该对象的所有参数都是测量必不可少的。userId的值请确保不同的用户有不同的值，height为身高(单位cm)，gender是性别(0:女 1:男)，birthday是出生日期，(格式：yyyy-MM-dd 如：1990-06-23)。对象可调用QingNiuUser类中的初始化方法获得。
+    // onLowPowerBlock 电压低的提示
     // connectSuccessBlock：测量完成获取数据成功之后，会返回测量数据deviceData和连接状态，如果状态是QingNiuDeviceConnectStateWeightOver，代表正常测量完毕，如果状态是QingNiuDeviceConnectStateSavedData，代表接收到的数据是存储数据，如果存储数据有多条，根据user_id进行区分。
     //connectFailBlock：连接或者获取数据失败后的回调信息，可根据信息提示做响应的处理。
-    [QingNiuSDK connectDevice:qingNiuDevice user:user connectSuccessBlock:^(NSMutableDictionary *deviceData, QingNiuDeviceConnectState qingNiuDeviceConnectState) {
-    
+    [QingNiuSDK connectDevice:qingNiuDevice user:user onLowPowerBlock:^{
+            
+    } connectSuccessBlock:^(NSMutableDictionary *deviceData, QingNiuDeviceConnectState qingNiuDeviceConnectState) {
+           
     } connectFailBlock:^(QingNiuDeviceConnectState qingNiuDeviceConnectState) {
     
-    }];
+    }]
     ```
+
+       
 5. 可选 connectWithAdvertisementData：如果您想自己实现扫描设备的步骤，那么您可以在扫描到设备后将 advertisementData  和peripheral对象作为参数
  使用方法同上
 
