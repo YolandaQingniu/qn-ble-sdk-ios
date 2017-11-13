@@ -7,8 +7,10 @@
 //
 
 /*  QingNiuSDKVersion
- *  3.8
- *  移除测试版SDK的限制 兼容新款型号的设备
+ *  3.9
+ *  修改手动断开设备后，后续自动断开后走手动断开的回调的bug
+ *  增加连接超时功能
+ *  修改获取不到储存数据的bug
  */
 
 #import <Foundation/Foundation.h>

@@ -84,6 +84,8 @@ typedef NS_ENUM(NSInteger,QingNiuWeightUnit) {//体重单位
 @property (nonatomic,strong)NSString *model;
 //设备的对象
 @property (nonatomic,strong)CBPeripheral *peripheral;
+//RSSI
+@property (nonatomic,strong)NSNumber *RSSI;
 //方法(内部使用，可不管)
 @property (nonatomic,assign)QingNiuMethod method;
 //秤的状态
