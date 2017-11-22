@@ -8,10 +8,8 @@
 如需使用 android 版,请点击 [这里](../../../qn-ble-sdk-android)
 
 
-## 最新版本 `3.9` [下载地址](../../releases/download/3.9/qn-ios-ble-sdk-3.9.zip)
- *  修改手动断开设备后，后续自动断开后走手动断开的回调的bug
- *  增加连接超时功能
- *  修改获取不到储存数据的bug
+## 最新版本 `3.9.1` [下载地址](../../releases/download/3.9.1/qn-ios-ble-sdk-3.9.1.zip)
+ * 新设备的支持
 
 [所有版本](../../releases)
 
