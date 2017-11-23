@@ -9,6 +9,7 @@
 /*  QingNiuSDKVersion
  *  3.9.1
  *  增加新的设备支持
+ *  增加切换用户的功能
  */
 
 #import <Foundation/Foundation.h>
@@ -39,6 +40,14 @@ typedef void(^RegisterAppBlock)(QingNiuRegisterAppState qingNiuRegisterAppState)
  */
 +(void)setWeightUnit:(QingNiuWeightUnit)qingNiuWeightUnit;
 
+
+/**
+ 设置用户资料，用于在测量过程中，切换用户
+ 
+ @param qingNiuUser 用户资料
+ @param block 设置是否成功
+ */
++ (void)setUser:(QingNiuUser *)qingNiuUser response:(void (^)(BOOL success, NSError *error))block;
 
 /**
  是否开始体脂率稳定算法,默认为YES开始
