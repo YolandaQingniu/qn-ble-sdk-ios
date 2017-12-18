@@ -10,6 +10,7 @@
  *  3.9.1
  *  增加新的设备支持
  *  增加切换用户的功能
+ *  修复bitcode的问题
  */
 
 #import <Foundation/Foundation.h>
