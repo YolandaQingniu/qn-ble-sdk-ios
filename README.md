@@ -148,16 +148,6 @@ typedef void(^DisconnectSuccessBlock)(QingNiuDeviceDisconnectState qingNiuDevice
 |bone|骨量
 |protein|蛋白质
 
-注意：以下指标是拓展指标，只有达成合作协议的SDK接入商才有可能获取其中的某几个指标
-
-|字段|说明|
-|:----|:-------|
-|bodyage|体年龄
-|sinew|肌肉量
-|fat_free_weight|去脂体重
-|body_shape|体型
-|score|分数
-
 
 #### 枚举说明
 * 验证信息

@@ -144,16 +144,6 @@ steps operate as above
 |bone|Bone mass
 |protein|protein
 
-Note：Below is expand are to expand indicators, you can reach only after reach a cooperation agreement in SDK access
-
-|Field|explanation|
-|:----|:-------|
-|bodyage|Body age|
-|sinew|Muscle mass
-|fat_free_weight|Fat weight
-|body_shape|Body shape
-|score| score
-
 
 #### Example
 * Verify information
