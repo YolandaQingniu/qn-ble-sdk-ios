@@ -7,8 +7,8 @@
 //
 
 /*  QingNiuSDKVersion
- *  3.10.1
- *  增加新的设备支持
+ *  3.10.2
+ *  修复某些秤无法连接的问题
  */
 
 #import <Foundation/Foundation.h>
