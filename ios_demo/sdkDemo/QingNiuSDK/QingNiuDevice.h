@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger,QingNiuDeviceConnectState) {//连接过程中的各种
     QingNiuDeviceConnectStateGetSavedDataOver = 7,//获取完所有的存储数据(此时deviceData的值为nil)
     QingNiuDeviceConnectStateDisConnected = 8,//测量完毕之后自动断开了连接(此时deviceData为nil)
     QingNiuDeviceConnectStateConnectedSuccess = 9,//连接成功时候的回调(此时deviceData为nil)
+    QingNiuDeviceConnectStatePeripheralStateIsNotDisconnected = 10,//该设备为处于断开状态，无法连接
 };
 
 typedef NS_ENUM(NSInteger,QingNiuDeviceDisconnectState) {//断开连接的各种状态
