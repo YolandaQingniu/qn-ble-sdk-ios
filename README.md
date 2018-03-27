@@ -8,10 +8,8 @@
 如需使用 android 版,请点击 [这里](../../../qn-ble-sdk-android)
 
 
-## 最新版本 `3.10.3` [下载地址](../../releases/download/3.10.3/qn-ios-ble-sdk-3.10.3.zip)
- * 修复某些秤无法连接
- * 增加连接设备时的判断
- * 修复出现率较低的内存问题
+## 最新版本 `3.10.4` [下载地址](../../releases/download/3.10.4/qn-ios-ble-sdk-3.10.4.zip)
+ * 增加新设备
 
 [所有版本](../../releases)
 
