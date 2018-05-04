@@ -7,8 +7,8 @@
 //
 
 /*  QingNiuSDKVersion
- *  3.10.5
- *  修改验证机制
+ *  3.10.6
+ *  增加新设备
  */
 
 #import <Foundation/Foundation.h>

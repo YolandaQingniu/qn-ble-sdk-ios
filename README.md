@@ -8,8 +8,8 @@
 如需使用 android 版,请点击 [这里](../../../qn-ble-sdk-android)
 
 
-## 最新版本 `3.10.5` [下载地址](../../releases/download/3.10.5/qn-ios-ble-sdk-3.10.5.zip)
- * 修改验证机制
+## 最新版本 `3.10.6` [下载地址](../../releases/download/3.10.6/qn-ios-ble-sdk-3.10.6.zip)
+ * 增加新设备
 
 [所有版本](../../releases)
 
