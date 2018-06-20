@@ -1,4 +1,6 @@
 
+# 该版本SDK后续不在维护更新，请切换到[新版SDK](https://github.com/YolandaQingniu/sdk-ios-demo)
+
 #轻牛 蓝牙SDK IOS版
 
 [Document in English](https://github.com/YolandaQingniu/qn-ble-sdk-ios/blob/master/README_en.md)
@@ -8,7 +10,7 @@
 如需使用 android 版,请点击 [这里](../../../qn-ble-sdk-android)
 
 
-## 最新版本 `3.10.7` [下载地址](../../releases/download/3.10.7/qn-ios-ble-sdk-3.10.7.zip)
+## 最新版本 `3.10.8` [下载地址](../../releases/download/3.10.8/qn-ios-ble-sdk-3.10.8.zip)
  * 增加新设备
 
 [所有版本](../../releases)

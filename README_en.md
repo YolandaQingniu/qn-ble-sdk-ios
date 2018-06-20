@@ -1,4 +1,6 @@
 
+# This version of the SDK does not update，Please switch[New SDK](https://github.com/YolandaQingniu/sdk-ios-demo)
+
 #Yolanda Bluetooth SDK IOS Version
 
 You can use most of yolanda company's scale after integration of this SDK successfully
@@ -6,7 +8,7 @@ You can use most of yolanda company's scale after integration of this SDK succes
 If you need Android version, please click [here](../../../qn-ble-sdk-ios) file
 
 
-## The newest version `3.10.7` [please download here](../../releases/download/3.10.7/qn-ios-ble-sdk-3.10.7.zip)  
+## The newest version `3.10.8` [please download here](../../releases/download/3.10.8/qn-ios-ble-sdk-3.10.8.zip)  
 * add new device
 
 
