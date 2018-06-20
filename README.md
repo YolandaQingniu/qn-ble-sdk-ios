@@ -1,5 +1,5 @@
 
-# 该版本SDK后续不在维护更新，请切换到[新版SDK](https://github.com/YolandaQingniu/sdk-ios-demo)
+# 该SDK后续不在维护更新，请切换到[新版SDK](https://github.com/YolandaQingniu/sdk-ios-demo)
 
 #轻牛 蓝牙SDK IOS版
 
